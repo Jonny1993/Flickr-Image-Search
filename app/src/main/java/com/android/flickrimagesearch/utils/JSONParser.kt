@@ -31,12 +31,12 @@ class JSONParser {
 								)
 							)
 						}
-						Log.d("Message", photos.last().title)
+						if (photos.isNotEmpty()) Log.d("Message", photos.last().title)
 					}
 				}
 
 				override fun error(t: Throwable) {
-					TODO("Not yet implemented")
+					Log.getStackTraceString(t)
 				}
 			})
 		}

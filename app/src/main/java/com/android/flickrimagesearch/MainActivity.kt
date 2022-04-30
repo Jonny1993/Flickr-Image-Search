@@ -3,6 +3,7 @@ package com.android.flickrimagesearch
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -25,9 +26,6 @@ import coil.compose.rememberAsyncImagePainter
 import com.android.flickrimagesearch.controller.Controller
 import com.android.flickrimagesearch.ui.theme.FlickrImageSearchTheme
 import com.android.flickrimagesearch.utils.JSONParser
-import java.sql.Timestamp
-import java.time.Instant
-import java.util.concurrent.TimeUnit
 
 class MainActivity : ComponentActivity() {
 	val controller = Controller()
@@ -63,6 +61,10 @@ class MainActivity : ComponentActivity() {
 				}
 			}
 		}
+	}
+
+	fun displayEmptyResultToast() {
+		Toast.makeText(this, "Sorry, no images were found", Toast.LENGTH_SHORT).show()
 	}
 }
 
@@ -129,7 +131,9 @@ fun FieldAndButton(controller: Controller, mainActivity: MainActivity) {
 				end = 20.dp,
 				bottom = 12.dp
 			),
-			modifier = Modifier.padding(top = 12.dp).fillMaxWidth()
+			modifier = Modifier
+				.padding(top = 12.dp)
+				.fillMaxWidth()
 		) {
 			Icon(
 				Icons.Filled.Search,
